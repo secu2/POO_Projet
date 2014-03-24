@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Memoire {
 	private Instruction[] mem;
+	public int compteurOrdinal;
 	
 	/**
 	 * Génère une mémoire avec un nombre de cases définies
@@ -77,6 +78,10 @@ public class Memoire {
 		mem[mem[adresse].operandeDroit.operande] = instruction;
 	}
 	
+	public int getCompteurOrdinal(int adresse){
+		compteurOrdinal = (adresse+1)%mem.length;
+		return compteurOrdinal;
+	}
 	
 	
 	
