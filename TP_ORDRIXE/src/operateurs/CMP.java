@@ -2,7 +2,7 @@ package operateurs;
 
 import machine.Operateur;
 
-public class CMP extends Operateur{
+public class CMP extends Branchements{
 
 	CMP() {
 		super();

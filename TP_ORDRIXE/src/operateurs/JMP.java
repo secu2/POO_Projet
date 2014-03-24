@@ -2,7 +2,7 @@ package operateurs;
 
 import machine.Operateur;
 
-public class JMP extends Operateur{
+public class JMP extends Branchements{
 
 	JMP() {
 		super();

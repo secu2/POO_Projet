@@ -2,7 +2,7 @@ package operateurs;
 
 import machine.Operateur;
 
-public class SLT extends Operateur{
+public class SLT extends Branchements{
 
 	SLT() {
 		super();

@@ -2,7 +2,7 @@ package operateurs;
 
 import machine.Operateur;
 
-public class ADD extends Operateur{
+public class ADD extends Affectation{
 
 	ADD() {
 		super();

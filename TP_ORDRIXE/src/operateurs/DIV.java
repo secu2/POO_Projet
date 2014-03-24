@@ -2,7 +2,7 @@ package operateurs;
 
 import machine.Operateur;
 
-public class DIV extends Operateur{
+public class DIV extends Affectation{
 
 	DIV() {
 		super();
