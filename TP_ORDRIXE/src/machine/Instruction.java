@@ -1,7 +1,6 @@
 package machine;
 
 public class Instruction {
-	//Test 2
 	String operateur;
 	Operande operandeGauche;
 	Operande operandeDroit;
