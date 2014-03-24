@@ -2,7 +2,7 @@ package operateurs;
 
 import machine.Operateur;
 
-public class MOV extends Branchements{
+public class MOV extends Affectation{
 
 	MOV() {
 		super();

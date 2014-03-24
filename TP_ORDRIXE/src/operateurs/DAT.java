@@ -2,7 +2,7 @@ package operateurs;
 
 import machine.Operateur;
 
-public class DAT extends Branchements{
+public class DAT extends Operateur{
 
 	DAT() {
 		super();
