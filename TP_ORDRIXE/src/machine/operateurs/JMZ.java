@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class JMN extends Branchements{
+public class JMZ extends Branchements{
 
-	JMN() {
+	JMZ() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

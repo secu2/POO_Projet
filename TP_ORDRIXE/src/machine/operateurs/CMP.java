@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class SUB extends Affectation{
+public class CMP extends Branchements{
 
-	SUB() {
+	CMP() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

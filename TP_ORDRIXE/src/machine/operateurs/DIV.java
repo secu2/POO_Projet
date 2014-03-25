@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class SLT extends Branchements{
+public class DIV extends Affectation{
 
-	SLT() {
+	DIV() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

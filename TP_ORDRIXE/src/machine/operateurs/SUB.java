@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class DJN extends Branchements{
+public class SUB extends Affectation{
 
-	DJN() {
+	SUB() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

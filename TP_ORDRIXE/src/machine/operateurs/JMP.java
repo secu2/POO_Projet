@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class CMP extends Branchements{
+public class JMP extends Branchements{
 
-	CMP() {
+	JMP() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

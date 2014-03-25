@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class MOD extends Affectation{
+public class DAT extends Operateur{
 
-	MOD() {
+	DAT() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

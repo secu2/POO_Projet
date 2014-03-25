@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class MUL extends Affectation{
+public class SLT extends Branchements{
 
-	MUL() {
+	SLT() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

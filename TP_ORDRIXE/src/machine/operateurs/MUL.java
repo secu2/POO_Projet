@@ -1,10 +1,10 @@
-package operateurs;
+package machine.operateurs;
 
 import machine.Operateur;
 
-public class JMP extends Branchements{
+public class MUL extends Affectation{
 
-	JMP() {
+	MUL() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
