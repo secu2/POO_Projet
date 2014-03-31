@@ -1,8 +1,8 @@
 package machine.operateurs;
 
-import machine.Operateur;
+import machine.Instruction;
 
-public class DAT extends Operateur{
+public class DAT extends Instruction{
 
 	DAT() {
 		super();
