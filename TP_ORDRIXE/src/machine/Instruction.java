@@ -2,24 +2,22 @@ package machine;
 
 public class Instruction {
 	String operateur;
-	Operande operandeGauche;
-	Operande operandeDroit;
+	Operande operandes;
 	public Instruction(){
 		operateur = "DAT";
-		operandeGauche = new Operande();
-		operandeDroit = new Operande();
+		operandes = new Operande();
 	}
 
 	public Instruction(String operateur, Operande operande){
 		this.operateur = operateur;
-		this.operandeGauche = new Operande(operande);
+		this.operandes = operande;
+	}
+
+	public String operateur(){
+		return operateur;
 	}
 	
-	public int operandeDroit(){
-		return operandeDroit.operande;
-	}
-	
-	public int operandeGauche(){
-		return operandeGauche.operande;
+	public Operande operandes(){
+		return operandes;
 	}
 }
