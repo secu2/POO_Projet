@@ -1,5 +1,8 @@
 package machine.adressage;
 
 public abstract class Adresse {
-	int adresse;
+	protected int adresse;
+	public int adresse(){
+		return adresse;
+	}
 }
