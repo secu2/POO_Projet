@@ -1,8 +1,7 @@
 package machine.operateurs;
 
-import machine.Operateur;
 
-public class MOV extends Affectation{
+public class MOV extends Operation{
 
 	MOV() {
 		super();

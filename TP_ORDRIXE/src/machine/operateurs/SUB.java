@@ -1,8 +1,6 @@
 package machine.operateurs;
 
-import machine.Operateur;
-
-public class SUB extends Affectation{
+public class SUB extends Operation{
 
 	SUB() {
 		super();

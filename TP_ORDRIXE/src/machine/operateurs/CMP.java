@@ -1,6 +1,5 @@
 package machine.operateurs;
 
-import machine.Operateur;
 
 public class CMP extends Branchements{
 

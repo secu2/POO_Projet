@@ -1,8 +1,7 @@
 package machine.operateurs;
 
-import machine.Operateur;
 
-public class MOD extends Affectation{
+public class MOD extends Operation{
 
 	MOD() {
 		super();

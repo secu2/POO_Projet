@@ -1,8 +1,7 @@
 package machine.operateurs;
 
-import machine.Operateur;
 
-public class ADD extends Affectation{
+public class ADD extends Operation{
 
 	ADD() {
 		super();

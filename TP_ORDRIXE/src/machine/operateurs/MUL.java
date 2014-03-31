@@ -1,8 +1,7 @@
 package machine.operateurs;
 
-import machine.Operateur;
 
-public class MUL extends Affectation{
+public class MUL extends Operation{
 
 	MUL() {
 		super();

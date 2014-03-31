@@ -1,8 +1,7 @@
 package machine.operateurs;
 
-import machine.Operateur;
 
-public class DIV extends Affectation{
+public class DIV extends Operation{
 
 	DIV() {
 		super();
