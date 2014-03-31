@@ -9,5 +9,9 @@ public class ADD extends Instruction{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void exec(){
+		
+	}
 
 }

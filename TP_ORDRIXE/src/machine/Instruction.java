@@ -12,7 +12,7 @@ public class Instruction {
 
 	public Instruction(String operateur, Operande operande){
 		this.operateur = operateur;
-		//this.operandeGauche = new Operande(typeAdressage, operande);
+		this.operandeGauche = new Operande(operande);
 	}
 	
 	public int operandeDroit(){

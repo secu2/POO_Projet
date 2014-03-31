@@ -1,11 +1,12 @@
 package machine;
 
+import machine.adressage.Adresse;
+
 public class Operande {
-	String typeAdressage;
-	int operande;
+	Adresse operande;
 	public Operande(){
-		typeAdressage = "";
-		operande = 0;
+		operande = new  {
+		};
 	}
 
 	public Operande(String typeAdressage, int operande){
