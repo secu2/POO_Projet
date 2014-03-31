@@ -2,6 +2,6 @@ package machine.operateurs;
 
 import machine.Instruction;
 
-public class Operation extends Instruction {
+public abstract class Operation extends Instruction {
 
 }
