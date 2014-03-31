@@ -1,6 +1,6 @@
 package machine;
 
-public class Instruction {
+public class Instruction extends Processeur{
 	String operateur;
 	Operande operandes;
 	public Instruction(){
