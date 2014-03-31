@@ -1,0 +1,135 @@
+options { 
+
+ DEBUG_PARSER=false; 
+
+ STATIC=false; 
+
+} 
+
+ 
+
+PARSER_BEGIN(Compiler) 
+
+package jus.aoo.ordrixe.assemblage; 
+
+ 
+
+<Section d’import> 
+
+ 
+
+public class Compiler { 
+
+ /** Compilation d'un fichier de combattant 
+
+ * @param s : le nom du fichier 
+
+ * @throws Exception une erreur de lecture 
+
+ */ 
+
+ public static void compile(String s) throws Exception { 
+
+ FileReader r = new FileReader(s); 
+
+ Compiler parser = new Compiler(new BufferedReader(r)); 
+
+ Type1 code = parser.INSTRUCTIONS(); 
+
+ … 
+
+ } 
+
+ /** réalignement en cas d’erreur de syntaxe sur le symbole EOL*/ 
+
+ private void skiptoEOL(){while(token.kind!=EOL||token.kind!=CEOL) getNextToken();} 
+
+} 
+
+ 
+
+PARSER_END(Compiler) 
+
+// les caractères ignorés 
+
+SKIP : 
+
+{ 
+
+ " " | "\t" | "\""| "\\" 
+
+| "!" | "%" | "&" | "'" | "*" | "." | "/" | ";" | "<" | ">" | "=" | "?" | "[" | "]" 
+
+| "^" | "`" | "{" | "}" | "~" | "|" | "£" | "µ" | "§" 
+
+| "\u0000" | "\u0001" | "\u0002" | "\u0003" | "\u0004" | "\u0005" | "\u0006" | "\u0007" 
+
+| "\u0008" | "\u000B" | "\u000C" | "\u000E" | "\u000F" | "\u0010" | "\u0011" | "\u0012" 
+
+| "\u0013" | "\u0014" | "\u0015" | "\u0016" | "\u0017" | "\u0018" | "\u0019" | "\u001A" 
+
+| "\u001B" | "\u001C" | "\u001D" | "\u001E" | "\u001F" | "\u007F" 
+
+}
+
+
+
+// les lexèmes de fin de ligne 
+
+TOKEN:{<EOL: "\n" | "\r" | "\r\n">} 
+
+// la gestion des commentaires 
+
+SPECIAL_TOKEN :{"//" : IN_SL_COMMENT} 
+
+<IN_SL_COMMENT> TOKEN :{<CEOL: <EOL>> : DEFAULT} 
+
+<IN_SL_COMMENT> SKIP :{< ~[] >} 
+
+// les lexèmes du langage 
+
+TOKEN : /* ADRESSAGE */
+{
+  < IMM : "#"("-")?(["0"-"9"])+ >
+| < NUM : "$"("-")?(["0"-"9"])+ >
+| < IND : "@"(["0"-"9"])+ >
+}
+
+TOKEN : /* INSTRUCTIONS */
+{
+  < DAT : "DAT" >
+| < MOV : "MOV" >
+| < ADD : "ADD" >
+| < SUB : "SUB" >
+| < MUL : "MUL" >
+| < DIV : "DIV" >
+| < MOD : "MOD" >
+| < JMP : "JMP" >
+| < JMZ : "JMZ" >
+| < JMN : "JMN" >
+| < DJN : "DJN" >
+| < CMP : "CMP" >
+| < SLT : "SLT" >
+}
+// les règles de grammaire de ce langage 
+
+Type1 INSTRUCTIONS() : 
+
+{Type2 s1;} 
+
+{ 
+
+ (s1=INSTRUCTION(){…})* 
+
+{ 
+
+ … 
+
+ } 
+
+ <EOF> 
+
+} 
+
+ 
+
