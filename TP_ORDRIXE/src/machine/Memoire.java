@@ -57,27 +57,6 @@ public class Memoire {
 		mem[adresse] = instruction;
 	}
 	
-	/**
-	 * Ecrit dans la mémoire à une adresse donnée ajoutée à 
-	 * un offset l'instruction
-	 * @param adresse
-	 * @param offset
-	 * @param instruction
-	 */
-	public void ecrireRelatif(int adresse, int offset, Instruction instruction){
-		mem[adresse+offset] = instruction;
-	}
-	
-	/**
-	 * Ecrit l'instruction à l'adresse désignée par 
-	 * l'opérande droit de la mémoire à l'adresse renseignée
-	 * @param adresse
-	 * @param instruction
-	 */
-	public void ecrireIndirect(int adresse, Instruction instruction){
-		mem[mem[adresse].operandeDroit.operande] = instruction;
-	}
-	
 	public int getCompteurOrdinal(int adresse){
 		compteurOrdinal = (adresse+1)%mem.length;
 		return compteurOrdinal;
