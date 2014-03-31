@@ -23,4 +23,6 @@ public class Processeur {
 	public void Memoire(Memoire memoire){
 		this.memoire = memoire;
 	}
+	
+	
 }

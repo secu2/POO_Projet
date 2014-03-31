@@ -2,7 +2,9 @@ package machine.operateurs;
 
 import machine.Instruction;
 
-
+/**
+ * Affecte la mémoire avec sa somme au contenu d'une autre
+ */
 public class ADD extends Instruction{
 
 	ADD() {
