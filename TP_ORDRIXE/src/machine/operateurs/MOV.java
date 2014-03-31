@@ -7,5 +7,9 @@ public class MOV extends Operation{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void exec(){
+		
+	}
 
 }
