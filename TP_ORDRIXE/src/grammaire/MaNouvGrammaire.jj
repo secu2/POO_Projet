@@ -90,12 +90,18 @@ SPECIAL_TOKEN :{"//" : IN_SL_COMMENT}
 
 TOKEN : /* ADRESSAGE */
 {
-  < IMM : "#"("-")?(["0"-"9"])+ >
-| < NUM : "$"("-")?(["0"-"9"])+ >
-| < IND : "@"(["0"-"9"])+ >
+  < IMM : "#">
+| < NUM : "$">
+| < IND : "@">
 }
 
-TOKEN : /* INSTRUCTIONS */
+TOKEN : /* VAL ADRESSAGE */
+{
+  < ("-")?(["0"-"9"])+ >
+  < (["0"-"9"])+ >
+}
+
+TOKEN : /* OPERATEURS */
 {
   < DAT : "DAT" >
 | < MOV : "MOV" >
@@ -111,25 +117,17 @@ TOKEN : /* INSTRUCTIONS */
 | < CMP : "CMP" >
 | < SLT : "SLT" >
 }
+
 // les règles de grammaire de ce langage 
 
-Type1 INSTRUCTIONS() : 
+Instruction Instruction() throws Exception : {
+	Token operation;
+	Token operande1;
+	Token operande2;	
+  } {
 
-{Type2 s1;} 
 
-{ 
-
- (s1=INSTRUCTION(){…})* 
-
-{ 
-
- … 
-
- } 
-
- <EOF> 
-
-} 
+}
 
  
 
