@@ -1,6 +1,4 @@
-package operateurs;
-
-import machine.Operateur;
+package machine.operateurs;
 
 public class JMN extends Branchements{
 

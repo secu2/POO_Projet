@@ -1,6 +1,5 @@
-package operateurs;
+package machine.operateurs;
 
-import machine.Operateur;
 
 public class JMZ extends Branchements{
 
