@@ -13,7 +13,7 @@ PARSER_BEGIN(Compiler)
 package jus.aoo.ordrixe.assemblage; 
  
 
-<Section d’import> 
+<Section dÔøΩimport> 
 
  
 
@@ -35,11 +35,11 @@ public class Compiler {
 
  Type1 code = parser.INSTRUCTIONS(); 
 
- … 
+ ÔøΩ 
 
  } 
 
- /** réalignement en cas d’erreur de syntaxe sur le symbole EOL*/ 
+ /** rÔøΩalignement en cas dÔøΩerreur de syntaxe sur le symbole EOL*/ 
 
  private void skiptoEOL(){while(token.kind!=EOL||token.kind!=CEOL) getNextToken();} 
 
@@ -49,7 +49,7 @@ public class Compiler {
 
 PARSER_END(Compiler) 
 
-// les caractères ignorés 
+// les caractÔøΩres ignorÔøΩs 
 
 SKIP : 
 
@@ -79,9 +79,9 @@ SKIP :
  | "}"
  | "~"
  | "|"
- | "£"
- | "µ"
- | "§" 
+ | "ÔøΩ"
+ | "ÔøΩ"
+ | "ÔøΩ" 
 
 /* A DISCUTER */
 
@@ -97,7 +97,7 @@ SKIP :
 
 
 
-// les lexèmes de fin de ligne 
+// les lexÔøΩmes de fin de ligne 
 
 TOKEN:{<EOL: "\n" | "\r" | "\r\n">} 
 
@@ -109,7 +109,7 @@ SPECIAL_TOKEN :{"//" : IN_SL_COMMENT}
 
 <IN_SL_COMMENT> SKIP :{< ~[] >} 
 
-// les lexèmes du langage 
+// les lexÔøΩmes du langage 
 
 TOKEN : /* ADRESSAGE */
 {
@@ -141,11 +141,25 @@ TOKEN : /* OPERATEURS */
 | < SLT : "SLT" >
 }
 
-// les règles de grammaire de ce langage 
+List<Instruction> LesInstructions() throws Exception :
+{ List<Instruction> inst = new ArrayList();
+	Instruction courante;  } 
+{
+  (    
+     courante = ConstructionInstruction()
+     < EOL >
+     {inst.add(courante);}
+  )*
+     < EOF >
+  	{return inst;}
+}
 
-Instruction Instruction() throws Exception : {
+
+Instruction ConstructionInstruction() throws Exception : {
 	Token operation;
 	Token operande1;
 	Token operande2;	
-  } 
+  } {
+(
+
 }
