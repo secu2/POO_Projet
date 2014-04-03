@@ -16,7 +16,7 @@ public class Instruction extends Processeur{
 	public String operateur(){
 		return operateur;
 	}
-	
+
 	public Operande operandes(){
 		return operandes;
 	}
