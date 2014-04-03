@@ -2,13 +2,13 @@ package machine;
 
 public class Instruction extends Processeur{
 	String operateur;
-	Operande operandes;
+	Operandes operandes;
 	public Instruction(){
 		operateur = "DAT";
-		operandes = new Operande();
+		operandes = new Operandes();
 	}
 
-	public Instruction(String operateur, Operande operande){
+	public Instruction(String operateur, Operandes operande){
 		this.operateur = operateur;
 		this.operandes = operande;
 	}
@@ -17,7 +17,7 @@ public class Instruction extends Processeur{
 		return operateur;
 	}
 
-	public Operande operandes(){
+	public Operandes operandes(){
 		return operandes;
 	}
 }
