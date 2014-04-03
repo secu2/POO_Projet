@@ -2,12 +2,14 @@ package machine;
 
 import java.util.ArrayList;
 
+import machine.adressage.Adresse;
+
 /**
  * Composant mémoire de la machine
  *	est composé d'un simple tableau
  */
 public class Memoire {
-	private Instruction[] mem;
+	protected Instruction[] mem;
 	public int compteurOrdinal;
 	
 	/**
@@ -62,6 +64,33 @@ public class Memoire {
 		return compteurOrdinal;
 	}
 	
+	public abstract class Adresse {
+		protected int adresse;
+		public int adresse(){
+			return adresse;
+		}
+	}
+	
+	public class Immediat extends Adresse {
+		
+		public Immediat(int adresse){
+			this.adresse = adresse;
+		}
+	}
+	
+	public class Relatif extends Adresse {
+
+		public Relatif(int adresse, int offset){
+			this.adresse = adresse+offset;
+		}
+	}
+	
+	public class RelatifIndirect extends Adresse {
+		public RelatifIndirect(int adresse, int offset){
+			this.adresse = mem.lire(adresse+offset).operandes().operandeDroit().adresse();
+					//.lire(adresse+offset).operandes().operandeDroit().adresse();
+		}
+	}
 	
 	
 }
