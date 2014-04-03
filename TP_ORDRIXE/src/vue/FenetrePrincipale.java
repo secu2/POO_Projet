@@ -22,6 +22,8 @@ import java.awt.Panel;
 
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -93,9 +95,34 @@ public class FenetrePrincipale extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 33, 694, 320);
 		contentPane.add(scrollPane);
-				
-		DefaultTableModel model = new DefaultTableModel();
+		
+		String columnNames[] = new String[10];
+		for(int i=0; i<columnNames.length;i++)
+		{
+			columnNames[i]=Integer.toString(i+1);
+		}
+		
+		Object data[][] = new Object[10][10];
+		/*for(int i=0; i<data.length;i++)
+		{
+			for(int j=0;j<data.length;i++)
+			{
+				if(j==1)
+				{
+					data[i][j]=Integer.toString(i);
+				}
+			}
+		}*/
+		
+		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		table = new JTable(model);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				System.out.println("("+table.getSelectedRow()+");"+table.getSelectedColumn()+")");
+			}
+		});
 		scrollPane.setViewportView(table);
+		
 	}
 }
