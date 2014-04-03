@@ -1,5 +1,7 @@
 package machine;
 
+import machine.adressage.Adresse;
+
 public class Instruction extends Processeur{
 	String operateur;
 	Operandes operandes;
@@ -8,9 +10,14 @@ public class Instruction extends Processeur{
 		operandes = new Operandes();
 	}
 
-	public Instruction(String operateur, Operandes operande){
+	public Instruction(String operateur, Operandes operandes){
 		this.operateur = operateur;
-		this.operandes = operande;
+		this.operandes = operandes;
+	}
+	
+	public Instruction(Instruction instruction, Operandes operandes){
+		operandes = new Operandes(operandes);
+		operateur = instruction.operateur();
 	}
 
 	public String operateur(){
