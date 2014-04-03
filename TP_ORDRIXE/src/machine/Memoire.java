@@ -71,26 +71,5 @@ public class Memoire {
 		}
 	}
 	
-	public class Immediat extends Adresse {
-		
-		public Immediat(int adresse){
-			this.adresse = adresse;
-		}
-	}
-	
-	public class Relatif extends Adresse {
-
-		public Relatif(int adresse, int offset){
-			this.adresse = adresse+offset;
-		}
-	}
-	
-	public class RelatifIndirect extends Adresse {
-		public RelatifIndirect(int adresse, int offset){
-			this.adresse = mem.lire(adresse+offset).operandes().operandeDroit().adresse();
-					//.lire(adresse+offset).operandes().operandeDroit().adresse();
-		}
-	}
-	
 	
 }
