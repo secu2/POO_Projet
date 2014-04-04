@@ -13,6 +13,7 @@ import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -22,8 +23,11 @@ import java.awt.Panel;
 
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FenetrePrincipale extends JFrame {
 
@@ -31,6 +35,7 @@ public class FenetrePrincipale extends JFrame {
 	private JTextField textField_tailleMem;
 	private JTextField textField_nbPas;
 	private JTable table;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -60,69 +65,103 @@ public class FenetrePrincipale extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 43, 21);
 		contentPane.add(menuBar);
-		
+
 		JMenu mnFichier = new JMenu("Fichier");
 		menuBar.add(mnFichier);
+
+		JMenuItem mntmJouer = new JMenuItem("Jouer");
+
+		mnFichier.add(mntmJouer);
+
+		JMenuItem mntmQuitter = new JMenuItem("Quitter");
+		mntmQuitter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 		
-		JMenuItem mntmOuvrir = new JMenuItem("Ouvrir");
-		mnFichier.add(mntmOuvrir);
-		
-		JMenuItem mntmSauvegarder = new JMenuItem("Sauvegarder");
-		mnFichier.add(mntmSauvegarder);
-		
-		JLabel lblTailleMmoire = new JLabel("Taille mémoire : 2^");
+		JMenuItem mntmInformations = new JMenuItem("Informations");
+		mntmInformations.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FenetreInformations fInfo = new FenetreInformations();
+				fInfo.show();
+			}
+		});
+		mnFichier.add(mntmInformations);
+		mnFichier.add(mntmQuitter);
+
+		final JLabel lblTailleMmoire = new JLabel("Taille mémoire : 2^");
 		lblTailleMmoire.setBounds(179, 364, 135, 14);
 		contentPane.add(lblTailleMmoire);
-		
+
 		textField_tailleMem = new JTextField();
 		textField_tailleMem.setBounds(294, 361, 27, 20);
 		contentPane.add(textField_tailleMem);
 		textField_tailleMem.setColumns(10);
-		
+
 		JLabel lblTailleDePas = new JLabel("Taille de pas maximum ?");
 		lblTailleDePas.setBounds(373, 364, 162, 14);
 		contentPane.add(lblTailleDePas);
-		
+
 		textField_nbPas = new JTextField();
 		textField_nbPas.setBounds(522, 361, 27, 20);
 		contentPane.add(textField_nbPas);
 		textField_nbPas.setColumns(10);
-		
-		JScrollPane scrollPane = new JScrollPane();
+
+		final JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 33, 694, 320);
 		contentPane.add(scrollPane);
-		
-		String columnNames[] = new String[10];
-		for(int i=0; i<columnNames.length;i++)
-		{
-			columnNames[i]=Integer.toString(i+1);
-		}
-		
-		Object data[][] = new Object[10][10];
-		/*for(int i=0; i<data.length;i++)
-		{
-			for(int j=0;j<data.length;i++)
-			{
-				if(j==1)
-				{
-					data[i][j]=Integer.toString(i);
+
+		mntmJouer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (!textField_tailleMem.getText().equals("")) {
+					String columnNames[] = new String[Integer.parseInt(textField_tailleMem.getText())]; 
+					for (int i = 0; i < columnNames.length; i++) {
+						columnNames[i] = Integer.toString(i + 1);
+					}
+
+					//Object data[][] = new Object[Integer.parseInt(textField_tailleMem.getText())][2];
+					/*
+					 * for(int i=0; i<data.length;i++) { for(int
+					 * j=0;j<data.length;i++) { if(j==1) {
+					 * data[i][j]=Integer.toString(i); } } }
+					 */
+
+					//DefaultTableModel model = new DefaultTableModel(data,columnNames);
+					double val = (double) Integer.parseInt(textField_tailleMem.getText());
+					DefaultTableModel model = new DefaultTableModel((int) Math.pow(2, val)/4, 4);
+					
+					table = new JTable(model);
+					scrollPane.setViewportView(table);
+				} else {
+					JOptionPane jop = new JOptionPane();
+					jop.showMessageDialog(null,
+							"Veuillez saisir une taille de mémoire svp.",
+							"Erreur - Pas de taille mémoire",
+							JOptionPane.ERROR_MESSAGE);
 				}
+				
+				table.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) 
+					{
+						System.out.println("(" + (table.getSelectedRow()+1) + ";"
+								+ (table.getSelectedColumn()+1) + ")");
+						System.out.println("Zone mémoire : "+(table.getSelectedRow()+1)*(table.getSelectedColumn()+1));
+					}
+				});
+
 			}
-		}*/
+			
+		});		
 		
-		DefaultTableModel model = new DefaultTableModel(data, columnNames);
-		table = new JTable(model);
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				System.out.println("("+table.getSelectedRow()+");"+table.getSelectedColumn()+")");
-			}
-		});
-		scrollPane.setViewportView(table);
+		    
 		
+
 	}
 }
