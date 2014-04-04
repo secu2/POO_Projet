@@ -9,7 +9,7 @@ public class Processeur {
 	 * Crée un processeur et sa mémoire
 	 */
 	public Processeur(){
-		memoire = new Memoire();
+		memoire = new Memoire(100);
 	}
 	
 	/**

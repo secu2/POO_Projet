@@ -18,7 +18,7 @@ public class MOV extends Operation{
 	 * @param destination la case mémoire à écrire
 	 */
 	public void exec(Adresse origine, Adresse destination){
-		memoire().ecrire(destination.adresse(), memoire().lire(destination.adresse()));
+		//memoire().ecrire(destination.adresse(), memoire().lire(destination.adresse()));
 	}
 
 }

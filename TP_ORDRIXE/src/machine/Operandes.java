@@ -1,18 +1,21 @@
 package machine;
 
+import java.util.ArrayList;
+
 import machine.adressage.Adresse;
 import machine.adressage.Immediat;
 /**
  * Les opérandes constituant une instruction
  */
 public class Operandes {
-	protected Adresse[] operandes; //Les opérandes (adresses)
+	protected ArrayList<Adresse> operandes; //Les opérandes (adresses)
 	/**
 	 * Contruction d'opérandes par défaut avec les deux adresses à 0
 	 */
 	public Operandes(){
-		operandes[0] = new Immediat(0); //Operande gauche
-		operandes[1] = new Immediat(0); //Operande droit
+		operandes = new ArrayList<Adresse>();
+		operandes.add(new Immediat(0)); //Operande gauche
+		operandes.add(new Immediat(0)); //Operande droit
 	}
 
 	/**
@@ -21,8 +24,11 @@ public class Operandes {
 	 * @param operandeDroit La seconde adresse
 	 */
 	public Operandes(Adresse operandeGauche, Adresse operandeDroit){
-		this.operandes[0] = operandeGauche;
-		this.operandes[1] = operandeDroit;
+		operandes = new ArrayList<Adresse>();
+		//this.operandes[0] = operandeGauche;
+		this.operandes.set(0, operandeGauche);
+		//this.operandes[1] = operandeDroit;
+		this.operandes.set(1, operandeDroit);
 	}
 	
 	/**
@@ -30,15 +36,18 @@ public class Operandes {
 	 * @param operandes
 	 */
 	public Operandes(Operandes operandes){
-		this.operandes[0] = operandes.operandeGauche();
-		this.operandes[1] = operandes.operandeDroit();
+		this.operandes = new ArrayList<Adresse>();
+		//this.operandes[0] = operandes.operandeGauche();
+		this.operandes.set(0, operandes.operandeGauche());
+		//this.operandes[1] = operandes.operandeDroit();
+		this.operandes.set(1, operandes.operandeDroit());
 	}
 	
 	/**
 	 * Permet de récupérer les opérandes sous forme de tableau
 	 * @return un tableau d'adresses à deux cases ([0]=opérande gauche, [1]=opérande droit)
 	 */
-	public Adresse[] operande(){
+	public ArrayList<Adresse> operande(){
 		return operandes;
 	}
 	
@@ -47,7 +56,7 @@ public class Operandes {
 	 * @return l'adresse de l'opérande gauche
 	 */
 	public Adresse operandeGauche(){
-		return operandes[0];
+		return operandes.get(0);
 	}
 
 	/**
@@ -55,7 +64,7 @@ public class Operandes {
 	 * @return l'adresse de l'opérande droit
 	 */
 	public Adresse operandeDroit(){
-		return operandes[1];
+		return operandes.get(1);
 	}
 	
 	/**
@@ -63,7 +72,7 @@ public class Operandes {
 	 * @param gauche l'opérande gauche à modifier
 	 */
 	public void operandeGauche(Adresse gauche){
-		operandes[0] = gauche;
+		operandes.set(0, gauche);
 	}
 	
 	/**
@@ -71,6 +80,6 @@ public class Operandes {
 	 * @param droit l'opérande droit à modifier
 	 */
 	public void operandeDroit(Adresse droit){
-		operandes[1] = droit;
+		operandes.set(1, droit);
 	}
 }

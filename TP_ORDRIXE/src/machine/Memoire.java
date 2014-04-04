@@ -9,7 +9,7 @@ import machine.adressage.Adresse;
  *	est composé d'un simple tableau
  */
 public class Memoire {
-	protected Instruction[] mem;
+	protected ArrayList<Instruction> mem;
 	public int compteurOrdinal;
 	
 	/**
@@ -17,14 +17,16 @@ public class Memoire {
 	 * @param taille Nombre de cases mémoire pour la machine
 	 */
 	public Memoire(int taille){
-		this.remplir(taille);
+		mem = new ArrayList<Instruction>();
+		remplir(taille);
 	}
 	
 	/**
 	 * Génere une mémoire de 100 cases par défaut
 	 */
 	public Memoire(){
-		this.remplir(100);
+		mem = new ArrayList<Instruction>();
+		
 	}
 	
 	/**
@@ -32,8 +34,8 @@ public class Memoire {
 	 * Remplissage de la mémoire avec une taille définie
 	 */
 	private void remplir(int dimension){
-			for (int i = 0; i < mem.length; i++) {
-				mem[i] = new Instruction();
+			while(mem.size() < dimension) {
+				mem.add(new Instruction());
 			}
 	}
 	
@@ -42,12 +44,12 @@ public class Memoire {
 	 */
 	public ArrayList<String> infosMemoire(){
 		ArrayList<String> infos = new ArrayList<String>();
-		infos.add("Taille totale de la mémoire: "+ mem.length);
+		infos.add("Taille totale de la mémoire: "+ mem.size());
 		return infos;
 	}
 	
 	public Instruction lire(int adresse){
-		return mem[adresse];
+		return mem.get(adresse);
 	}
 	
 	/**
@@ -56,11 +58,11 @@ public class Memoire {
 	 * @param instruction
 	 */
 	public void ecrire(int adresse, Instruction instruction){
-		mem[adresse] = instruction;
+		mem.set(adresse, instruction);
 	}
 	
 	public int getCompteurOrdinal(int adresse){
-		compteurOrdinal = (adresse+1)%mem.length;
+		compteurOrdinal = (adresse+1)%mem.size();
 		return compteurOrdinal;
 	}
 	

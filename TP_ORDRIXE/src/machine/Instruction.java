@@ -4,7 +4,7 @@ import machine.adressage.Adresse;
 /**
  *	Instruction
  */
-public class Instruction extends Processeur{
+public class Instruction{
 	String operateur;
 	Operandes operandes;
 	/**
@@ -16,7 +16,7 @@ public class Instruction extends Processeur{
 	}
 	
 	/**
-	 * Constructiton d'une instruction complète
+	 * Construction d'une instruction complète
 	 * @param operateur
 	 * @param operandes
 	 */
