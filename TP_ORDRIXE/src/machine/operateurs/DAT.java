@@ -14,5 +14,9 @@ public class DAT extends Instruction{
 	public String data(){
 		return data;
 	}
+	
+	public void exec(){
+		
+	}
 
 }
