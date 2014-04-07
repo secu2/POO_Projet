@@ -12,13 +12,13 @@ public class Jeu {
 		Chargeur chargeur = new Chargeur();
 		Processeur processeur = new Processeur();
 		
-		chargeur.charger(processeur.memoire(), 0, new Instruction());
+		//chargeur.charger(processeur.memoire(), 0, new Instruction());
 
-		//chargeur.charger(processeur.memoire(), 1, new Instruction("test", new Operandes(new Immediat(12), new Immediat(13))));
+		chargeur.charger(processeur.memoire(), 1, new Instruction("test", new Operandes(new Immediat(12), new Immediat(13))));
 
 		System.out.println(processeur.memoire().infosMemoire());
 		//processeur.memoire().ecrire(0, new Instruction("test", new Operandes(new Immediat(12), new Immediat(13))));
-		System.out.println(processeur.memoire().lire(0).operandes());
+		System.out.println(processeur.memoire().lire(1).operandes().operandeDroit().adresse());
 		
 	}
 }

@@ -26,9 +26,9 @@ public class Operandes {
 	public Operandes(Adresse operandeGauche, Adresse operandeDroit){
 		operandes = new ArrayList<Adresse>();
 		//this.operandes[0] = operandeGauche;
-		this.operandes.set(0, operandeGauche);
+		this.operandes.add(0, operandeGauche);
 		//this.operandes[1] = operandeDroit;
-		this.operandes.set(1, operandeDroit);
+		this.operandes.add(1, operandeDroit);
 	}
 	
 	/**
@@ -38,9 +38,9 @@ public class Operandes {
 	public Operandes(Operandes operandes){
 		this.operandes = new ArrayList<Adresse>();
 		//this.operandes[0] = operandes.operandeGauche();
-		this.operandes.set(0, operandes.operandeGauche());
+		this.operandes.add(0, operandes.operandeGauche());
 		//this.operandes[1] = operandes.operandeDroit();
-		this.operandes.set(1, operandes.operandeDroit());
+		this.operandes.add(1, operandes.operandeDroit());
 	}
 	
 	/**
