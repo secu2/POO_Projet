@@ -83,14 +83,7 @@ public class FenetrePrincipale extends JFrame {
 			}
 		});
 		
-		JMenuItem mntmInformations = new JMenuItem("Informations");
-		mntmInformations.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				FenetreInformations fInfo = new FenetreInformations();
-				fInfo.show();
-			}
-		});
-		mnFichier.add(mntmInformations);
+		
 		mnFichier.add(mntmQuitter);
 
 		final JLabel lblTailleMmoire = new JLabel("Taille mémoire : 2^");
@@ -141,6 +134,8 @@ public class FenetrePrincipale extends JFrame {
 						System.out.println("(" + (table.getSelectedRow()+1) + ";"
 								+ (table.getSelectedColumn()+1) + ")");
 						System.out.println("Zone mémoire : "+(table.getSelectedRow()+1)*(table.getSelectedColumn()+1));
+						FenetreInformations fInfo = new FenetreInformations();
+						fInfo.show();
 					}
 				});
 

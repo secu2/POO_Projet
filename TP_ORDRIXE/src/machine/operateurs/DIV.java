@@ -16,7 +16,7 @@ public class DIV extends Operation{
 		//Instruction originale, à modifier
 		Instruction instructionAModifier = mem.lire(droit.adresse());
 		
-		//Les deux nouveau opérateurs
+		//Les deux nouveaux opérateurs
 		int nouvelleOperandeGauche = mem.lire(droit.adresse()).operandes().operandeGauche().adresse()
 				/mem.lire(gauche.adresse()).operandes().operandeGauche().adresse();
 		int nouvelleOperandeDroit = mem.lire(droit.adresse()).operandes().operandeDroit().adresse()
