@@ -33,7 +33,6 @@ public class FenetrePrincipale extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_tailleMem;
-	private JTextField textField_nbPas;
 	private JTable table;
 	private JTable table_1;
 
@@ -95,22 +94,13 @@ public class FenetrePrincipale extends JFrame {
 		mnFichier.add(mntmQuitter);
 
 		final JLabel lblTailleMmoire = new JLabel("Taille mémoire : 2^");
-		lblTailleMmoire.setBounds(179, 364, 135, 14);
+		lblTailleMmoire.setBounds(265, 363, 135, 17);
 		contentPane.add(lblTailleMmoire);
 
 		textField_tailleMem = new JTextField();
-		textField_tailleMem.setBounds(294, 361, 27, 20);
+		textField_tailleMem.setBounds(387, 361, 27, 20);
 		contentPane.add(textField_tailleMem);
 		textField_tailleMem.setColumns(10);
-
-		JLabel lblTailleDePas = new JLabel("Taille de pas maximum ?");
-		lblTailleDePas.setBounds(373, 364, 162, 14);
-		contentPane.add(lblTailleDePas);
-
-		textField_nbPas = new JTextField();
-		textField_nbPas.setBounds(522, 361, 27, 20);
-		contentPane.add(textField_nbPas);
-		textField_nbPas.setColumns(10);
 
 		final JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 33, 694, 320);
@@ -121,9 +111,7 @@ public class FenetrePrincipale extends JFrame {
 
 				if (!textField_tailleMem.getText().equals("")) {
 					String columnNames[] = new String[Integer.parseInt(textField_tailleMem.getText())]; 
-					for (int i = 0; i < columnNames.length; i++) {
-						columnNames[i] = Integer.toString(i + 1);
-					}
+					
 
 					//Object data[][] = new Object[Integer.parseInt(textField_tailleMem.getText())][2];
 					/*
@@ -131,7 +119,7 @@ public class FenetrePrincipale extends JFrame {
 					 * j=0;j<data.length;i++) { if(j==1) {
 					 * data[i][j]=Integer.toString(i); } } }
 					 */
-
+					
 					//DefaultTableModel model = new DefaultTableModel(data,columnNames);
 					double val = (double) Integer.parseInt(textField_tailleMem.getText());
 					DefaultTableModel model = new DefaultTableModel((int) Math.pow(2, val)/4, 4);
