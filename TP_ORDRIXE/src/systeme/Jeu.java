@@ -12,7 +12,7 @@ public class Jeu {
 	public static void main(String[] args) throws SecurityException, IllegalArgumentException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException{
 		//Main class
 		Chargeur chargeur = new Chargeur();
-		Processeur processeur = new Processeur();
+		Processeur processeur = new Processeur(100);
 		
 		//chargeur.charger(processeur.memoire(), 0, new Instruction());
 

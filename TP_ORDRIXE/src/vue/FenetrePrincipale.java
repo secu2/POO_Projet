@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 import java.awt.Color;
 
+import javax.swing.CellEditor;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
@@ -23,6 +24,8 @@ import java.awt.Panel;
 
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import machine.Processeur;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -103,6 +106,7 @@ public class FenetrePrincipale extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (!textField_tailleMem.getText().equals("")) {
+					
 					String columnNames[] = new String[Integer.parseInt(textField_tailleMem.getText())]; 
 					
 
@@ -115,10 +119,14 @@ public class FenetrePrincipale extends JFrame {
 					
 					//DefaultTableModel model = new DefaultTableModel(data,columnNames);
 					double val = (double) Integer.parseInt(textField_tailleMem.getText());
+					Processeur p1 = new Processeur((int) val);
+					
 					DefaultTableModel model = new DefaultTableModel((int) Math.pow(2, val)/4, 4);
 					
 					table = new JTable(model);
+					//table.setDefaultRenderer(Object.class, new MonCellRenderer());
 					scrollPane.setViewportView(table);
+					table.setDefaultRenderer(Object.class, new MonCellRenderer());
 				} else {
 					JOptionPane jop = new JOptionPane();
 					jop.showMessageDialog(null,
@@ -136,6 +144,8 @@ public class FenetrePrincipale extends JFrame {
 						System.out.println("Zone mémoire : "+(table.getSelectedRow()+1)*(table.getSelectedColumn()+1));
 						FenetreInformations fInfo = new FenetreInformations();
 						fInfo.show();
+						
+						
 					}
 				});
 

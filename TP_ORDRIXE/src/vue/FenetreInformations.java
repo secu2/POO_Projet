@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FenetreInformations extends JFrame {
 
@@ -61,9 +63,10 @@ public class FenetreInformations extends JFrame {
 		textArea.append("Trolololo\nTrolololo");
 		
 		JButton btnClose = new JButton("Close");
-		btnClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+		btnClose.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				getFrame().dispose();
 			}
 		});
 		
@@ -76,5 +79,10 @@ public class FenetreInformations extends JFrame {
 		btnClose.setBounds(222, 345, 89, 23);
 		contentPane.add(btnClose);
 		
+	}
+	
+	public JFrame getFrame()
+	{
+		return this;
 	}
 }

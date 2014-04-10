@@ -13,8 +13,8 @@ public class Processeur {
 	/**
 	 * Crée un processeur et sa mémoire
 	 */
-	public Processeur(){
-		memoire = new Memoire(100);
+	public Processeur(int tailleMem){
+		memoire = new Memoire(tailleMem);
 	}
 	
 	/**
