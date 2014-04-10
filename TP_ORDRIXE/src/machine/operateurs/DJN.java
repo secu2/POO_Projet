@@ -12,8 +12,10 @@ public class DJN extends Branchements{
 		// TODO Auto-generated constructor stub
 	}
 
-	public DJN(machine.Memoire mem, Adresse gauche, Adresse droit){
-	
+	public DJN(machine.Processeur proc, machine.adressage.Adresse gauche, machine.adressage.Adresse droit){
+		if(droit.adresse() -1 == 0){		
+			proc.compteurOrdinal(gauche.adresse());
+		}
 	}
 
 }
