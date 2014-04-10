@@ -1,5 +1,5 @@
 CLEAR_CONSOLE=false
-JAVACC_OPTIONS=-OUTPUT_DIRECTORY\=/Users/cruchaudem/git/POO_Projet/TP_ORDRIXE/src/grammaire/genere
+JAVACC_OPTIONS=-OUTPUT_DIRECTORY\=/Users/secu2/git/POO_Projet/TP_ORDRIXE/src/grammaire/genere
 JJDOC_OPTIONS=
 JJTREE_OPTIONS=
 JJ_NATURE=true
