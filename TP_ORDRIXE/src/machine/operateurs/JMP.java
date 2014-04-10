@@ -21,6 +21,7 @@ public class JMP extends Branchements{
 	 * @param gauche opérande gauche
 	 */
 	public JMP(machine.Processeur proc, Adresse gauche){
+		//Modification du compteur ordinal
 		proc.compteurOrdinal(gauche.adresse());
 	}
 

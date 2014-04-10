@@ -19,6 +19,7 @@ public class DAT extends Instruction{
 	 * @return data valeur de retour 
 	 */
 	public String data(){
+		//Retour de la String de données
 		return data;
 	}
 	

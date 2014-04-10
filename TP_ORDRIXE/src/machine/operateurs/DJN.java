@@ -22,7 +22,9 @@ public class DJN extends Branchements{
 	 * @param droit opérande droit
 	 */
 	public DJN(machine.Processeur proc, machine.adressage.Adresse gauche, machine.adressage.Adresse droit){
-		if(droit.adresse() -1 == 0){		
+		//Si opérande  droite est nul suite à la modification
+		if(droit.adresse()-1 == 0){		
+			//Modification du compteur ordinal
 			proc.compteurOrdinal(gauche.adresse());
 		}
 	}

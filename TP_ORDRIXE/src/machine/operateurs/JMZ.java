@@ -19,7 +19,9 @@ public class JMZ extends Branchements{
 	 * @param droit opérande droit
 	 */
 	JMZ(machine.Processeur proc, machine.Memoire mem, machine.adressage.Adresse gauche, machine.adressage.Adresse droit){
+		//Si l'opérande droit est nul
 		if(droit.adresse() == 0){
+			//Modification du compteur ordinal
 			proc.compteurOrdinal(gauche.adresse());
 		}
 	}

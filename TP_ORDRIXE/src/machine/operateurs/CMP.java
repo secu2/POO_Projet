@@ -18,8 +18,10 @@ public class CMP extends Branchements{
 	 * @param droit opérande droit
 	 */
 	CMP(machine.Processeur proc, machine.adressage.Adresse gauche, machine.adressage.Adresse droit){
+		// Si operande droit et opérande gauche sont égaux
 		if(droit.adresse() == gauche.adresse()){
-			proc.compteurOrdinal(proc.compteurOrdinal()+1);
+			//Modification du compteur
+			proc.compteurOrdinal(proc.compteurOrdinal()+1); 
 		}
 	}
 
