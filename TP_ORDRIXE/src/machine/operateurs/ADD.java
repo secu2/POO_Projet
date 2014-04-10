@@ -15,7 +15,7 @@ public class ADD extends Instruction{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void exec(machine.Memoire mem, Adresse gauche, Adresse droit){
+	public ADD(machine.Memoire mem, Adresse gauche, Adresse droit){
 		//Instruction originale, à modifier
 		Instruction instructionAModifier = mem.lire(droit.adresse());
 		
