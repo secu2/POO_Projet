@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -24,6 +25,7 @@ import java.awt.Panel;
 
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 import machine.Processeur;
 
@@ -126,7 +128,7 @@ public class FenetrePrincipale extends JFrame {
 					table = new JTable(model);
 					//table.setDefaultRenderer(Object.class, new MonCellRenderer());
 					scrollPane.setViewportView(table);
-					table.setDefaultRenderer(Object.class, new MonCellRenderer());
+					
 				} else {
 					JOptionPane jop = new JOptionPane();
 					jop.showMessageDialog(null,
@@ -134,6 +136,8 @@ public class FenetrePrincipale extends JFrame {
 							"Erreur - Pas de taille mémoire",
 							JOptionPane.ERROR_MESSAGE);
 				}
+				
+				
 				
 				table.addMouseListener(new MouseAdapter() {
 					@Override
@@ -147,7 +151,8 @@ public class FenetrePrincipale extends JFrame {
 						
 						
 					}
-				});
+				});			
+				
 
 			}
 			
