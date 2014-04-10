@@ -1,58 +1,42 @@
 options { 
-
- DEBUG_PARSER=false; 
-
- STATIC=false; 
-
+	DEBUG_PARSER=false; 
+	STATIC=false; 
 } 
-
- 
-
 PARSER_BEGIN(Compiler) 
+package grammaire.genere;
 
-package jus.aoo.ordrixe.assemblage; 
- 
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.util.List;
+import java.util.ArrayList;
+import grammaire.instructions.*;
+import machine.adressage.*;
 
-<Section d�import> 
-
- 
 
 public class Compiler { 
 
- /** Compilation d'un fichier de combattant 
+	/** Compilation d'un fichier de combattant 
+	* @param s : le nom du fichier 
+	* @throws Exception une erreur de lecture 
+	*/ 
 
- * @param s : le nom du fichier 
+ 	public static void compile(String s) throws Exception { 
+		FileReader r = new FileReader(s); 
+		Compiler parser = new Compiler(new BufferedReader(r)); 
+		List < Instruction > code = parser.Instructions();
+		//return code;
+	}  
 
- * @throws Exception une erreur de lecture 
+	private void skiptoEOL(){while(token.kind!=EOL||token.kind!=CEOL) getNextToken();} 
 
- */ 
-
- public static void compile(String s) throws Exception { 
-
- FileReader r = new FileReader(s); 
-
- Compiler parser = new Compiler(new BufferedReader(r)); 
-
- Type1 code = parser.INSTRUCTIONS(); 
-
- � 
-
- } 
-
- /** r�alignement en cas d�erreur de syntaxe sur le symbole EOL*/ 
-
- private void skiptoEOL(){while(token.kind!=EOL||token.kind!=CEOL) getNextToken();} 
-
-} 
+	} 
 
  
 
 PARSER_END(Compiler) 
 
-// les caract�res ignor�s 
 
-SKIP : 
-
+SKIP :  //Ignorer:
 { 
 
  " "
@@ -79,11 +63,8 @@ SKIP :
  | "}"
  | "~"
  | "|"
- | "�"
- | "�"
- | "�" 
 
-/* A DISCUTER */
+
 
 | "\u0000" | "\u0001" | "\u0002" | "\u0003" | "\u0004" | "\u0005" | "\u0006" | "\u0007" 
 
@@ -97,11 +78,11 @@ SKIP :
 
 
 
-// les lex�mes de fin de ligne 
+// Fin de ligne:
 
 TOKEN:{<EOL: "\n" | "\r" | "\r\n">} 
 
-// la gestion des commentaires 
+// Commentaire
 
 SPECIAL_TOKEN :{"//" : IN_SL_COMMENT} 
 
@@ -109,7 +90,7 @@ SPECIAL_TOKEN :{"//" : IN_SL_COMMENT}
 
 <IN_SL_COMMENT> SKIP :{< ~[] >} 
 
-// les lex�mes du langage 
+// Adressage
 
 TOKEN : /* ADRESSAGE */
 {
@@ -118,10 +99,13 @@ TOKEN : /* ADRESSAGE */
 | < IND : "@">
 }
 
-TOKEN : /* VAL ADRESSAGE */
+TOKEN :
 {
-  < ("-")?(["0"-"9"])+ >
-  < (["0"-"9"])+ >
+  < PLUS : "+" >
+| < MOINS : "-" >
+| < VALUE : (< DIGIT >)+ >
+| < #LETTER : [ "a"-"z", "A"-"Z" ] >
+| < #DIGIT : [ "0"-"9" ] >
 }
 
 TOKEN : /* OPERATEURS */
@@ -141,191 +125,113 @@ TOKEN : /* OPERATEURS */
 | < SLT : "SLT" >
 }
 
-List<Instruction> LesInstructions() throws Exception :
-{ List<Instruction> inst = new ArrayList();
-	Instruction courante;  } 
+
+//BEGIN Règles de grammaire:
+
+List<Instruction> Instructions() throws Exception :
 {
-  (    
-     courante = ConstructionInstruction()
-     < EOL >
-     {inst.add(courante);}
-  )*
-     < EOF >
-  	{return inst;}
-}
-
-
-Instruction ConstructionInstruction() throws Exception : {
-	Token operation;
-	Token operande1;
-	Token operande2;	
-  } {
-(
-
-}
-
-/*
-Conversation started Tuesday
-Guillaume Charléty
-4/8, 6:56pm
-Guillaume Charléty
-/**
- * JavaCC template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
- */
-options
-{
-  JDK_VERSION = "1.5";
-  DEBUG_PARSER=false;
-  static = false;
-}
-PARSER_BEGIN(EG1)
-package compiler;
-import java.util.*;
-import java.io.*;
-import ordrixeVirtualMachine.*;
- /** Compilation d'un fichier de combattant 
- * @param s : le nom du fichier 
- * @throws Exception une erreur de lecture 
- */ 
-public class EG1
-{
-	public static List<Instruction> compile(String s) throws Exception {
-	  FileReader r = new FileReader(s);
-	  EG1 parser = new EG1(new BufferedReader(r));
-	  List<Instruction> code = parser.LesInstructions();
-	  return code;
-	}
-	
-	/** Realignement en cas derreur de syntaxe sur le symbole EOL */
-	private void skiptoEOL() {
-	  while (token.kind!=EOL)
-	  	getNextToken();
-	}
-}
-PARSER_END(EG1)
-// les caractÃ¨res ignorÃ©s 
-SKIP : 
-{ 
- " " | "\t" | "\""| "\\" 
-| "!" | "%" | "&" | "'" | "*" | "." | "/" | ";" | "<" | ">" | "=" | "?" | "[" | "]" 
-| "^" | "`" | "{" | "}" | "~" | "|" | "£" | "µ" | "§" 
-| "\u0000" | "\u0001" | "\u0002" | "\u0003" | "\u0004" | "\u0005" | "\u0006" | "\u0007" 
-| "\u0008" | "\u000B" | "\u000C" | "\u000E" | "\u000F" | "\u0010" | "\u0011" | "\u0012" 
-| "\u0013" | "\u0014" | "\u0015" | "\u0016" | "\u0017" | "\u0018" | "\u0019" | "\u001A" 
-| "\u001B" | "\u001C" | "\u001D" | "\u001E" | "\u001F" | "\u007F" 
+  	List<Instruction> inst = new ArrayList();
+	Instruction courante;
 } 
-//lexemes de fin ligne
-TOKEN : 
-{
-  <EOL: "\n" | "\r" | "\r\n" >
-}
-  
-//lexemes de gestion de commentaires
-SPECIAL_TOKEN :{"//" : IN_SL_COMMENT} 
-<IN_SL_COMMENT> TOKEN :{<CEOL: <EOL>> : DEFAULT} 
-<IN_SL_COMMENT> SKIP :{< ~[] >} 
-TOKEN : /* OPERANDES */
-{
-  < AM : "#"("-")?(["0"-"9"])+ >
-| < AR : "$"("-")?(["0"-"9"])+ | ("-")?(["0"-"9"])+>
-| < ARI : "@"(["0"-"9"])+ >
-}
-TOKEN : /* INSTRUCTIONS */
-{
-  < DAT : "DAT" >
-| < MOV : "MOV" >
-| < ADD : "ADD" >
-| < SUB : "SUB" >
-| < MUL : "MUL" >
-| < DIV : "DIV" >
-| < MOD : "MOD" >
-| < JMP : "JMP" >
-| < JMZ : "JMZ" >
-| < JMN : "JMN" >
-| < DJN : "DJN" >
-| < CMP : "CMP" >
-| < CLT : "CLT" >
-}
-List<Instruction> LesInstructions() throws Exception :
-{ List<Instruction> inst = new ArrayList<Instruction>();
-	Instruction courante;  } 
 {
   (    
-     courante = ConstructionInstruction()
+     courante = Instruction()
      < EOL >
      {inst.add(courante);}
   )*
      < EOF >
   	{return inst;}
 }
-Instruction ConstructionInstruction() throws Exception : {
-	Token operation;
-	Token operande1;
-	Token operande2;	
-  } {
-   (
-  	operation = < DAT >  
-	operande1 = < AM >
-	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image));}
-| 	operation = < JMP >
-	operande1 = OperandeDroite()
-	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image));}
-|   operation = < MOV >
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < ADD >
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < SUB > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < MUL > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < DIV > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-|	operation = < MOD >
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < JMZ > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < JMN > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < DJN > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < CMP > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-| 	operation = < CLT > 
-	operande1 = OperandeGauche()
-	operande2 = OperandeDroite()
- 	{return new Instruction(Operateur.getOperation(operation.image),new Operande(operande1.image),new Operande(operande2.image));}
-)
+
+
+Instruction Instruction() throws Exception :
+{
+  Token operation;  Adresse operande1;  Adresse operande2;
 }
-Token OperandeGauche() : { Token op; } {
-	  (
-	  op = < AM > {return op;} |
-	  op = < AR > {return op;} |
-	  op = < ARI > {return op;}
-	  )
+{
+  	operation = < DAT > operande1 = operande(){
+		return new DAT(operande1);
+	}
+| operation = < MOV > operande1 = operande() operande2 = operande(){
+  	return new MOV(operande1, operande2);
+  }
+| operation = < ADD > operande1 = operande() operande2 = operande(){
+  	return new ADD(operande1, operande2);
+  }
+| operation = < SUB > operande1 = operande() operande2 = operande(){
+  	return new SUB(operande1, operande2);
+  }
+| operation = < MUL > operande1 = operande() operande2 = operande(){
+  	return new MUL(operande1, operande2);
+  }
+| operation = < DIV > operande1 = operande() operande2 = operande(){
+  	return new DIV(operande1, operande2);
+  }
+| operation = < MOD > operande1 = operande() operande2 = operande(){
+  	return new MOD(operande1, operande2);
+  }
+| operation = < JMP > operande1 = operande(){
+  	return new JMP(operande1);
+  }
+| operation = < JMZ > operande1 = operande() operande2 = operande(){
+  	return new JMZ(operande1, operande2);
+  }
+| operation = < JMN > operande1 = operande() operande2 = operande(){
+  	return new JMN(operande1, operande2);
+  }
+| operation = < DJN > operande1 = operande() operande2 = operande(){
+  	return new DJN(operande1, operande2);
+  }
+| operation = < CMP > operande1 = operande() operande2 = operande(){
+  	return new CMP(operande1, operande2);
+  }
+| operation = < SLT > operande1 = operande() operande2 = operande(){
+  	return new SLT(operande1, operande2);
+  }
+ }
+
+
+Adresse operande() :
+{
+  Token op;
+  Integer val;
 }
-Token OperandeDroite() : {Token op;} {
-	  (
-	  op = < AR > {return op;} |
-	  op = < ARI > {return op;} 
-	  )
-}*/
+{
+  ( op = < IMM >
+  | op = < NUM >
+  | op = < IND > )
+  val = Entier(){
+    switch (op.kind){
+		case IMM : {
+		  return new Immediat(val);
+		  break;
+		}
+      	case NUM : {
+      	  return new Immediat(val);
+      	  break;
+      	}
+      	case IND : {
+      	  return new Immediat(val);
+      	  break;
+      	}
+	}
+  }
+	| val = Entier(){
+	  return new Immediat(val);
+	}
+}
+
+Integer Entier(): {
+  Token valeur, signe;
+}
+{
+  	< PLUS > valeur = < VALUE > {
+    	return Integer.parseInt(valeur.image);
+  	}
+	| < MOINS > valeur = < VALUE >  {
+	  	return - Integer.parseInt(valeur.image);
+	}
+	| valeur = < VALUE >  {
+	  	return Integer.parseInt(valeur.image);
+	}
+}
