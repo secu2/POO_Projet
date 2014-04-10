@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import machine.operateurs.*;
 
 /**
- *	La coposante principale de l'architecture matérielle, le processeur
+ *	La composante principale de l'architecture matérielle, le processeur
  */
 public class Processeur {
 	Memoire memoire;
@@ -19,7 +19,7 @@ public class Processeur {
 	
 	/**
 	 * Permet de récupérer l'état actuelle du compteur ordinal du processeur
-	 * @return
+	 * @return compteurOrdinal
 	 */
 	public int compteurOrdinal(){
 		return compteurOrdinal;
@@ -30,6 +30,7 @@ public class Processeur {
 	 * @param compteurOrdinal
 	 */
 	public void compteurOrdinal(int compteurOrdinal){
+		//Définition du compteur ordinal
 		this.compteurOrdinal = compteurOrdinal;
 	}
 	
@@ -38,6 +39,7 @@ public class Processeur {
 	 * @return la mémoire
 	 */
 	public Memoire memoire(){
+		//Renvoi de la mémoire
 		return memoire;
 	}
 	
@@ -46,6 +48,7 @@ public class Processeur {
 	 * @param memoire la nouvelle mémoire
 	 */
 	public void Memoire(Memoire memoire){
+		//Modification de la mémoire
 		this.memoire = memoire;
 	}
 	

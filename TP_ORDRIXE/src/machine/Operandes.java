@@ -10,7 +10,7 @@ import machine.adressage.Immediat;
 public class Operandes {
 	protected ArrayList<Adresse> operandes; //Les opérandes (adresses)
 	/**
-	 * Contruction d'opérandes par défaut avec les deux adresses à 0
+	 * Construction d'opérandes par défaut avec les deux adresses à 0
 	 */
 	public Operandes(){
 		operandes = new ArrayList<Adresse>();
@@ -19,7 +19,7 @@ public class Operandes {
 	}
 
 	/**
-	 * Contruction d'opérandes avec les deux adresses
+	 * Construction d'opérandes avec les deux adresses
 	 * @param operandeGauche La première adresse
 	 * @param operandeDroit La seconde adresse
 	 */

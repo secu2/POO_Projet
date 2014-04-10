@@ -13,7 +13,7 @@ public class Memoire {
 	public int compteurOrdinal;
 	
 	/**
-	 * Génère une mémoire avec un nombre de cases définies
+	 * Génère une mémoire avec un nombre de cases définie
 	 * @param taille Nombre de cases mémoire pour la machine
 	 */
 	public Memoire(int taille){
@@ -22,7 +22,7 @@ public class Memoire {
 	}
 	
 	/**
-	 * Génere une mémoire de 100 cases par défaut
+	 * Génere une mémoire par défaut
 	 */
 	public Memoire(){
 		mem = new ArrayList<Instruction>();
@@ -30,7 +30,7 @@ public class Memoire {
 	}
 	
 	/**
-	 * @param dimension
+	 * @param dimension dimension de la mémoire
 	 * Remplissage de la mémoire avec une taille définie
 	 */
 	private void remplir(int dimension){
@@ -53,7 +53,7 @@ public class Memoire {
 	}
 	
 	/**
-	 * Ecrit dans la mémoire à une adresse donné une instruction
+	 * Ecrit dans la mémoire à une adresse donnée une instruction
 	 * @param adresse
 	 * @param instruction
 	 */
