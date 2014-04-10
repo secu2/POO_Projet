@@ -9,11 +9,20 @@ import machine.adressage.Immediat;
  */
 public class MUL extends Operation{
 
+	/**
+	 * Constructeur de la classe MUL
+	 */
 	MUL() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Affecte une mémoire avec sa multiplication au contenu d'une autre
+	 * @param mem mémoire du jeu
+	 * @param gauche opérande gauche
+	 * @param droit opérande droit
+	 */
 	public void exec(machine.Memoire mem, Adresse gauche, Adresse droit){
 		//Instruction originale, à modifier
 		Instruction instructionAModifier = mem.lire(droit.adresse());

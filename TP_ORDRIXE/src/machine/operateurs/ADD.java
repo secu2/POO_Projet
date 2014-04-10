@@ -10,11 +10,20 @@ import machine.adressage.Immediat;
  */
 public class ADD extends Instruction{
 
+	/**
+	 * Constructeur de la classe ADD
+	 */
 	ADD() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Affecte une mémoire avec sa somme au contenu d'une autre.
+	 * @param mem mémoire du programme
+	 * @param gauche opérande gauche
+	 * @param droit opérande droit
+	 */
 	public ADD(machine.Memoire mem, Adresse gauche, Adresse droit){
 		//Instruction originale, à modifier
 		Instruction instructionAModifier = mem.lire(droit.adresse());

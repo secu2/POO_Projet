@@ -7,6 +7,9 @@ import machine.adressage.Adresse;
  */
 public class MOV extends Operation{
 
+	/**
+	 * Constructeur de la classe MOV
+	 */
 	MOV() {
 		super();
 		// TODO Auto-generated constructor stub
