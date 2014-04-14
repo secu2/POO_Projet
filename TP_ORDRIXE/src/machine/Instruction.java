@@ -13,6 +13,7 @@ public class Instruction{
 	public Instruction(){
 		operateur = "DAT";
 		operandes = new Operandes();
+		//TOTO
 	}
 	
 	/**
